@@ -1,0 +1,8 @@
+type SignupResponse {
+  message: String!
+  token: String
+}
+
+type Mutation {
+  Signup(email: String!, password: String!, name: String!): SignupResponse!
+}

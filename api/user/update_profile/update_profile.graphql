@@ -1,0 +1,8 @@
+type Mutation {
+  UpdateProfile(
+    name: String
+    photo: String
+    about: String
+    password: String
+  ): User! @authenticated
+}

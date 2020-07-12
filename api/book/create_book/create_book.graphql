@@ -1,0 +1,20 @@
+type CreateBookResponse {
+  message: String!
+  book: Book
+}
+
+type Mutation {
+  CreateBook(
+    title: String!
+    description: String
+    author: String
+    publisher: String
+    photos: [String]
+    pages: Int
+    language: String
+    isbn10: String
+    isbn13: String
+    publishDate: Date
+    sellers: [SellerInput]
+  ): CreateBookResponse! @authenticated
+}

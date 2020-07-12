@@ -1,0 +1,11 @@
+type Review {
+  id: String!
+  book: Book!
+  user: User!
+  title: String!
+  description: String
+  rating: Int!
+  upvotes: [User]
+  approved: Boolean!
+  comments: [Comment]
+}

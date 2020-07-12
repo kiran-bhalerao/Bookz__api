@@ -1,0 +1,30 @@
+scalar Date
+
+input SellerInput {
+  name: String!
+  url: String
+  price: String
+}
+
+type Seller {
+  name: String!
+  url: String
+  price: String
+}
+
+type Book {
+  id: String!
+  user: User!
+  title: String!
+  description: String
+  verified: Boolean!
+  author: String
+  publisher: String
+  photos: [String]
+  pages: Int
+  language: String
+  isbn10: String
+  isbn13: String
+  publishDate: Date
+  sellers: [Seller]
+}

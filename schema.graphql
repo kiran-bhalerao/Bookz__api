@@ -1,0 +1,103 @@
+directive @authenticated on FIELD_DEFINITION
+
+scalar Date
+
+input SellerInput {
+  name: String!
+  url: String
+  price: String
+}
+
+type Seller {
+  name: String!
+  url: String
+  price: String
+}
+
+type Book {
+  id: String!
+  user: User!
+  title: String!
+  description: String
+  verified: Boolean!
+  author: String
+  publisher: String
+  photos: [String]
+  pages: Int
+  language: String
+  isbn10: String
+  isbn13: String
+  publishDate: Date
+  sellers: [Seller]
+}
+
+type Comment {
+  id: String!
+  comment: String!
+  user: User!
+  likes: [User]
+  dislikes: [User]
+}
+
+type Review {
+  id: String!
+  book: Book!
+  user: User!
+  title: String!
+  description: String
+  rating: Int!
+  upvotes: [User]
+  approved: Boolean!
+  comments: [Comment]
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+  CONTRIBUTOR
+}
+
+type User {
+  id: String!
+  email: String!
+  name: String!
+  role: Role!
+  photo: String
+  about: String
+  wishlist: [Book]
+}
+
+type CreateBookResponse {
+  message: String!
+  book: Book
+}
+
+type Mutation {
+  CreateBook(title: String!, description: String, author: String, publisher: String, photos: [String], pages: Int, language: String, isbn10: String, isbn13: String, publishDate: Date, sellers: [SellerInput]): CreateBookResponse! @authenticated
+  Login(email: String!, password: String!): LoginResponse!
+  Signup(email: String!, password: String!, name: String!): SignupResponse!
+  UpdateProfile(name: String, photo: String, about: String, password: String): User! @authenticated
+}
+
+type Query {
+  GetProfile: User @authenticated
+  GetUser(userId: String!): GetUserResponse
+}
+
+type GetUserResponse {
+  id: String
+  name: String
+  role: Role
+  about: String
+  photo: String
+}
+
+type LoginResponse {
+  message: String
+  token: String
+}
+
+type SignupResponse {
+  message: String!
+  token: String
+}

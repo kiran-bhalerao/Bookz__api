@@ -1,0 +1,17 @@
+directive @authenticated on FIELD_DEFINITION
+
+enum Role {
+  ADMIN
+  MEMBER
+  CONTRIBUTOR
+}
+
+type User {
+  id: String!
+  email: String!
+  name: String!
+  role: Role!
+  photo: String
+  about: String
+  wishlist: [Book]
+}

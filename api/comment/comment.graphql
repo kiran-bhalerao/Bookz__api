@@ -1,0 +1,7 @@
+type Comment {
+  id: String!
+  comment: String!
+  user: User!
+  likes: [User]
+  dislikes: [User]
+}

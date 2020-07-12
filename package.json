@@ -1,0 +1,44 @@
+{
+  "name": "bookz",
+  "version": "0.0.1",
+  "description": "Books Search App",
+  "main": "server.ts",
+  "author": "kiran bhalerao",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "env-cmd ts-node-dev -r tsconfig-paths/register --notify=false --rs --clear server.ts",
+    "pretypes": "gql-merge --out-file ./schema.graphql ./api/**/*.graphql ./api/**/**/*.graphql",
+    "types": "graphql-to-typescript ./schema.graphql ./types/graph.d.ts"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.15.1",
+    "clean-deep": "^3.3.0",
+    "env-cmd": "^10.1.0",
+    "express": "^4.17.1",
+    "graphql": "^15.3.0",
+    "graphql-tools": "^6.0.12",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.19",
+    "mongoose": "^5.9.22",
+    "typescript": "^3.9.6",
+    "yup": "^0.29.1"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/lodash": "^4.14.157",
+    "@types/mongoose": "^5.7.30",
+    "@types/yup": "^0.29.3",
+    "@typescript-eslint/eslint-plugin": "^3.6.0",
+    "@typescript-eslint/parser": "^3.6.0",
+    "babel-runtime": "^6.26.0",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "gql-merge": "^0.0.6",
+    "graphql-to-typescript": "^0.1.2",
+    "prettier": "^2.0.5",
+    "ts-node-dev": "^1.0.0-pre.50",
+    "tsconfig-paths": "^3.9.0"
+  }
+}

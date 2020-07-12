@@ -1,0 +1,11 @@
+type GetUserResponse {
+  id: String
+  name: String
+  role: Role
+  about: String
+  photo: String
+}
+
+type Query {
+  GetUser(userId: String!): GetUserResponse
+}
