@@ -1,0 +1,25 @@
+input UpdateBookInputs {
+  title: String
+  description: String
+  author: String
+  publisher: String
+  photos: [String]
+  pages: Int
+  language: String
+  isbn10: String
+  isbn13: String
+  publishDate: Date
+  sellers: [SellerInput]
+}
+
+input UpdateBookOptions {
+  appendSellers: Boolean
+}
+
+type Mutation {
+  UpdateBook(
+    bookId: String!
+    update: UpdateBookInputs!
+    options: UpdateBookOptions
+  ): Book @authenticated
+}

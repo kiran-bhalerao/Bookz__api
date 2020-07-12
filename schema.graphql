@@ -74,14 +74,39 @@ type CreateBookResponse {
 
 type Mutation {
   CreateBook(title: String!, description: String, author: String, publisher: String, photos: [String], pages: Int, language: String, isbn10: String, isbn13: String, publishDate: Date, sellers: [SellerInput]): CreateBookResponse! @authenticated
+  DeleteBook(bookId: String): DeleteBookResponse!
+  UpdateBook(bookId: String!, update: UpdateBookInputs!, options: UpdateBookOptions): Book @authenticated
   Login(email: String!, password: String!): LoginResponse!
   Signup(email: String!, password: String!, name: String!): SignupResponse!
   UpdateProfile(name: String, photo: String, about: String, password: String): User! @authenticated
 }
 
+type DeleteBookResponse {
+  message: String!
+}
+
 type Query {
+  GetBook(bookId: String!): Book
   GetProfile: User @authenticated
   GetUser(userId: String!): GetUserResponse
+}
+
+input UpdateBookInputs {
+  title: String
+  description: String
+  author: String
+  publisher: String
+  photos: [String]
+  pages: Int
+  language: String
+  isbn10: String
+  isbn13: String
+  publishDate: Date
+  sellers: [SellerInput]
+}
+
+input UpdateBookOptions {
+  appendSellers: Boolean
 }
 
 type GetUserResponse {

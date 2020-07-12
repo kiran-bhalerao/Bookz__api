@@ -11,4 +11,6 @@ declare global {
 
   /** Apollo any agrs object */
   type AnyArgs = any
+
+  type AnyMap = Record<string, any>
 }

@@ -1,0 +1,7 @@
+type DeleteBookResponse {
+  message: String!
+}
+
+type Mutation {
+  DeleteBook(bookId: String): DeleteBookResponse!
+}

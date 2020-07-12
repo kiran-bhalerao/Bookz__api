@@ -1,6 +1,7 @@
 type Comment {
   id: String!
   comment: String!
+  book: Book!
   user: User!
   likes: [User]
   dislikes: [User]

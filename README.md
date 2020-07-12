@@ -11,11 +11,11 @@
 - [x] UpdateProfile :lock:
 - [ ] AddToWishlist :lock:
 - [ ] RemoveFromWishlist :lock:
-- [ ] CreateBook :lock:
-- [ ] UpdateBook :lock:
-- [ ] DeleteBook :lock:
+- [x] CreateBook :lock:
+- [x] UpdateBook :lock:
+- [x] DeleteBook :lock:
 - [ ] ApproveBook 🛡
-- [ ] GetBook
+- [x] GetBook
 - [ ] SearchBook
 - [ ] ReviewBook :lock:
 - [ ] UpdateReviewOfBook :lock:

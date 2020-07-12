@@ -1,3 +1,5 @@
+import { Comment } from 'models/comment'
+import { Review } from 'models/review'
 import { UserDoc } from 'models/user'
 import { Document, Model, model, Schema } from 'mongoose'
 import { Seller } from 'types/graph'
@@ -69,6 +71,12 @@ const bookSchema = new Schema(
   }
 )
 
-bookSchema.statics.build = (attrs: BookAttrs) => new Book(attrs)
+bookSchema.post('findOneAndDelete', async function (doc: BookDoc, done) {
+  await Review.deleteMany({ book: doc })
+  await Comment.deleteMany({ book: doc })
+  done()
+})
 
-export const Book = model<BookDoc, BookModel>('Book', bookSchema)
+bookSchema.statics.build = (attrs: BookAttrs) => new BookModel(attrs)
+
+export const BookModel = model<BookDoc, BookModel>('Book', bookSchema)

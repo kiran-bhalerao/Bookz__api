@@ -1,8 +1,10 @@
+import { BookDoc } from 'models/book'
+import { UserDoc } from 'models/user'
 import { Document, Model, model, Schema } from 'mongoose'
-import { UserDoc } from 'src/models/user'
 
 interface CommentAttrs {
   comment: string
+  book: BookDoc
   user: UserDoc
   likes: UserDoc[]
   dislikes: UserDoc[]
@@ -19,6 +21,10 @@ const commentSchema = new Schema(
     comment: {
       type: String,
       required: true
+    },
+    book: {
+      type: Schema.Types.ObjectId,
+      ref: 'Book'
     },
     user: {
       type: Schema.Types.ObjectId,

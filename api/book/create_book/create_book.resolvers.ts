@@ -1,4 +1,4 @@
-import { Book } from 'models/book'
+import { BookModel } from 'models/book'
 import { CreateBookMutationArgs, CreateBookResponse } from 'types/graph'
 import { Resolvers } from 'types/resolvers'
 
@@ -11,7 +11,7 @@ const resolvers: Resolvers = {
     ): Promise<CreateBookResponse> {
       const user = ctx.user
 
-      const book = await Book.build({
+      const book = await BookModel.build({
         ...args,
         user
       }).save()
