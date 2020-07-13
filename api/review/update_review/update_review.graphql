@@ -1,0 +1,17 @@
+type UpdateReviewResponse {
+  message: String!
+  review: Review
+}
+
+input UpdateReviewInputs {
+  title: String
+  description: String
+  rating: Int
+}
+
+type Mutation {
+  UpdateReview(
+    reviewId: String!
+    update: UpdateReviewInputs!
+  ): UpdateReviewResponse!
+}

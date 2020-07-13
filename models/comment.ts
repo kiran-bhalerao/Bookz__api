@@ -10,7 +10,9 @@ interface CommentAttrs {
   dislikes: UserDoc[]
 }
 
-export interface CommentDoc extends Document, CommentAttrs {}
+export interface CommentDoc extends Document, CommentAttrs {
+  id: string
+}
 
 interface CommentModel extends Model<CommentDoc> {
   build: (attrs: CommentAttrs) => CommentDoc

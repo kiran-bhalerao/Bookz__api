@@ -9,12 +9,14 @@ interface ReviewAttrs {
   title: string
   description: string
   rating: number
-  approved: boolean
-  upvotes: UserDoc[]
-  comments: CommentDoc[]
+  upvotes: UserDoc[] | null
+  comments: CommentDoc[] | null
 }
 
-interface ReviewDoc extends Document, ReviewAttrs {}
+interface ReviewDoc extends Document, ReviewAttrs {
+  id: string
+  approved: boolean
+}
 
 interface ReviewModel extends Model<ReviewDoc> {
   build: (attrs: ReviewAttrs) => ReviewDoc
