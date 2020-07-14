@@ -1,4 +1,4 @@
-import { Comment } from 'models/comment'
+import { CommentModel } from 'models/comment'
 import { Review } from 'models/review'
 import { UserDoc } from 'models/user'
 import { Document, Model, model, Schema } from 'mongoose'
@@ -72,8 +72,10 @@ const bookSchema = new Schema(
 )
 
 bookSchema.post('findOneAndDelete', async function (doc: BookDoc, done) {
-  await Review.deleteMany({ book: doc })
-  await Comment.deleteMany({ book: doc })
+  if (doc) {
+    await Review.deleteMany({ book: doc })
+    await CommentModel.deleteMany({ book: doc })
+  }
   done()
 })
 

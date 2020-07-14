@@ -1,0 +1,8 @@
+input UpdateCommentUpdate {
+  comment: String!
+}
+
+type Mutation {
+  UpdateComment(commentId: String!, updates: UpdateCommentUpdate!): Comment
+    @authenticated
+}

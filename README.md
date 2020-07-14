@@ -2,7 +2,7 @@
 
 > Bookz: Search, Manage and Share your Books read list
 
-#### Resol
+#### Resolvers
 
 - [x] Login
 - [x] Signup
@@ -18,12 +18,14 @@
 - [x] GetBook
 - [ ] SearchBook
 - [x] ReviewBook :lock:
-- [ ] UpdateReview :lock:
-- [ ] DeleteReview :lock:
+- [x] UpdateReview :lock:
+- [x] DeleteReview :lock:
 - [ ] ApproveReview 🛡
-- [ ] UpvoteReview :lock:
-- [ ] CommentReview :lock:
-- [ ] UpdateComment :lock:
-- [ ] DeleteComment :lock:
-- [ ] LikeComment :lock:
-- [ ] DislikeComment :lock:
+- [x] UpvoteReview :lock:
+- [x] CommentReview :lock:
+- [x] UpdateComment :lock:
+- [x] DeleteComment :lock:
+- [x] LikeComment :lock:
+- [x] DislikeComment :lock:
+
+.... on going

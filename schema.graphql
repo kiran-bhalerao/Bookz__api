@@ -34,7 +34,8 @@ type Book {
 type Comment {
   id: String!
   comment: String!
-  book: Book!
+  bookId: String!
+  reviewId: String!
   user: User!
   likes: [User]
   dislikes: [User]
@@ -49,7 +50,6 @@ type Review {
   rating: Int!
   upvotes: [User]
   approved: Boolean!
-  comments: [Comment]
 }
 
 enum Role {
@@ -77,8 +77,15 @@ type Mutation {
   CreateBook(title: String!, description: String, author: String, publisher: String, photos: [String], pages: Int, language: String, isbn10: String, isbn13: String, publishDate: Date, sellers: [SellerInput]): CreateBookResponse! @authenticated
   DeleteBook(bookId: String): DeleteBookResponse!
   UpdateBook(bookId: String!, update: UpdateBookInputs!, options: UpdateBookOptions): Book @authenticated
+  CommentReview(comment: String!, reviewId: String!): Comment @authenticated
+  DeleteComment(commentId: String!): DeleteCommentResponse! @authenticated
+  DislikeComment(commentId: String!): DislikeCommentResponse! @authenticated
+  LikeComment(commentId: String!): LikeCommentResponse! @authenticated
+  UpdateComment(commentId: String!, updates: UpdateCommentUpdate!): Comment @authenticated
+  DeleteReview(reviewId: String!): DeleteReviewResponse! @authenticated
   ReviewBook(bookId: String!, title: String!, description: String!, rating: Int!): ReviewBookResponse! @authenticated
   UpdateReview(reviewId: String!, update: UpdateReviewInputs!): UpdateReviewResponse!
+  UpvoteReview(reviewId: String!): UpvoteReviewResponse! @authenticated
   Login(email: String!, password: String!): LoginResponse!
   Signup(email: String!, password: String!, name: String!): SignupResponse!
   UpdateProfile(name: String, photo: String, about: String, password: String): User! @authenticated
@@ -112,6 +119,30 @@ input UpdateBookOptions {
   appendSellers: Boolean
 }
 
+type DeleteCommentResponse {
+  message: String!
+  success: Boolean!
+}
+
+type DislikeCommentResponse {
+  message: String!
+  comment: Comment
+}
+
+type LikeCommentResponse {
+  message: String!
+  comment: Comment
+}
+
+input UpdateCommentUpdate {
+  comment: String!
+}
+
+type DeleteReviewResponse {
+  message: String
+  success: Boolean
+}
+
 type ReviewBookResponse {
   message: String!
   review: Review
@@ -126,6 +157,11 @@ input UpdateReviewInputs {
   title: String
   description: String
   rating: Int
+}
+
+type UpvoteReviewResponse {
+  message: String!
+  isUpvoted: Boolean!
 }
 
 type GetUserResponse {

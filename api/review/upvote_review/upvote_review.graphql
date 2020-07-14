@@ -1,0 +1,8 @@
+type UpvoteReviewResponse {
+  message: String!
+  isUpvoted: Boolean!
+}
+
+type Mutation {
+  UpvoteReview(reviewId: String!): UpvoteReviewResponse! @authenticated
+}

@@ -1,0 +1,8 @@
+type DislikeCommentResponse {
+  message: String!
+  comment: Comment
+}
+
+type Mutation {
+  DislikeComment(commentId: String!): DislikeCommentResponse! @authenticated
+}

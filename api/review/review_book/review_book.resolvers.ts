@@ -29,7 +29,6 @@ const resolvers: Resolvers = {
         rating,
         user,
         book,
-        comments: [],
         upvotes: []
       }).save()
 

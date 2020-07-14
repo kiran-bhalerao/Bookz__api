@@ -1,5 +1,5 @@
 import { BookDoc } from 'models/book'
-import { CommentDoc } from 'models/comment'
+import { CommentModel } from 'models/comment'
 import { UserDoc } from 'models/user'
 import { Document, Model, model, Schema } from 'mongoose'
 
@@ -10,7 +10,6 @@ interface ReviewAttrs {
   description: string
   rating: number
   upvotes: UserDoc[] | null
-  comments: CommentDoc[] | null
 }
 
 interface ReviewDoc extends Document, ReviewAttrs {
@@ -53,12 +52,6 @@ const reviewSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'User'
       }
-    ],
-    comments: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Comment'
-      }
     ]
   },
   {
@@ -70,6 +63,14 @@ const reviewSchema = new Schema(
     }
   }
 )
+
+// remove all comments associated with the review
+reviewSchema.post('findOneAndDelete', async function (doc: ReviewDoc, next) {
+  if (doc) {
+    await CommentModel.deleteMany({ reviewId: doc._id })
+  }
+  next()
+})
 
 reviewSchema.statics.build = (attrs: ReviewAttrs) => new Review(attrs)
 

@@ -7,5 +7,4 @@ type Review {
   rating: Int!
   upvotes: [User]
   approved: Boolean!
-  comments: [Comment]
 }

@@ -1,0 +1,8 @@
+type LikeCommentResponse {
+  message: String!
+  comment: Comment
+}
+
+type Mutation {
+  LikeComment(commentId: String!): LikeCommentResponse! @authenticated
+}

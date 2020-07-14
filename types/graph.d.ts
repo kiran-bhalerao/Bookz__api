@@ -1,4 +1,4 @@
-export const typeDefs = ["directive @authenticated on FIELD_DEFINITION\n\nscalar Date\n\ninput SellerInput {\n  name: String!\n  url: String\n  price: String\n}\n\ntype Seller {\n  name: String!\n  url: String\n  price: String\n}\n\ntype Book {\n  id: String!\n  user: User!\n  title: String!\n  description: String\n  verified: Boolean!\n  author: String\n  publisher: String\n  photos: [String]\n  pages: Int\n  language: String\n  isbn10: String\n  isbn13: String\n  publishDate: Date\n  sellers: [Seller]\n}\n\ntype Comment {\n  id: String!\n  comment: String!\n  book: Book!\n  user: User!\n  likes: [User]\n  dislikes: [User]\n}\n\ntype Review {\n  id: String!\n  book: Book!\n  user: User!\n  title: String!\n  description: String!\n  rating: Int!\n  upvotes: [User]\n  approved: Boolean!\n  comments: [Comment]\n}\n\nenum Role {\n  ADMIN\n  MEMBER\n  CONTRIBUTOR\n}\n\ntype User {\n  id: String!\n  email: String!\n  name: String!\n  role: Role!\n  photo: String\n  about: String\n  wishlist: [Book]\n}\n\ntype CreateBookResponse {\n  message: String!\n  book: Book\n}\n\ntype Mutation {\n  CreateBook(title: String!, description: String, author: String, publisher: String, photos: [String], pages: Int, language: String, isbn10: String, isbn13: String, publishDate: Date, sellers: [SellerInput]): CreateBookResponse! @authenticated\n  DeleteBook(bookId: String): DeleteBookResponse!\n  UpdateBook(bookId: String!, update: UpdateBookInputs!, options: UpdateBookOptions): Book @authenticated\n  ReviewBook(bookId: String!, title: String!, description: String!, rating: Int!): ReviewBookResponse! @authenticated\n  UpdateReview(reviewId: String!, update: UpdateReviewInputs!): UpdateReviewResponse!\n  Login(email: String!, password: String!): LoginResponse!\n  Signup(email: String!, password: String!, name: String!): SignupResponse!\n  UpdateProfile(name: String, photo: String, about: String, password: String): User! @authenticated\n}\n\ntype DeleteBookResponse {\n  message: String!\n}\n\ntype Query {\n  GetBook(bookId: String!): Book\n  GetProfile: User @authenticated\n  GetUser(userId: String!): GetUserResponse\n}\n\ninput UpdateBookInputs {\n  title: String\n  description: String\n  author: String\n  publisher: String\n  photos: [String]\n  pages: Int\n  language: String\n  isbn10: String\n  isbn13: String\n  publishDate: Date\n  sellers: [SellerInput]\n}\n\ninput UpdateBookOptions {\n  appendSellers: Boolean\n}\n\ntype ReviewBookResponse {\n  message: String!\n  review: Review\n}\n\ntype UpdateReviewResponse {\n  message: String!\n  review: Review\n}\n\ninput UpdateReviewInputs {\n  title: String\n  description: String\n  rating: Int\n}\n\ntype GetUserResponse {\n  id: String\n  name: String\n  role: Role\n  about: String\n  photo: String\n}\n\ntype LoginResponse {\n  message: String\n  token: String\n}\n\ntype SignupResponse {\n  message: String!\n  token: String\n}\n"];
+export const typeDefs = ["directive @authenticated on FIELD_DEFINITION\n\nscalar Date\n\ninput SellerInput {\n  name: String!\n  url: String\n  price: String\n}\n\ntype Seller {\n  name: String!\n  url: String\n  price: String\n}\n\ntype Book {\n  id: String!\n  user: User!\n  title: String!\n  description: String\n  verified: Boolean!\n  author: String\n  publisher: String\n  photos: [String]\n  pages: Int\n  language: String\n  isbn10: String\n  isbn13: String\n  publishDate: Date\n  sellers: [Seller]\n}\n\ntype Comment {\n  id: String!\n  comment: String!\n  bookId: String!\n  reviewId: String!\n  user: User!\n  likes: [User]\n  dislikes: [User]\n}\n\ntype Review {\n  id: String!\n  book: Book!\n  user: User!\n  title: String!\n  description: String!\n  rating: Int!\n  upvotes: [User]\n  approved: Boolean!\n}\n\nenum Role {\n  ADMIN\n  MEMBER\n  CONTRIBUTOR\n}\n\ntype User {\n  id: String!\n  email: String!\n  name: String!\n  role: Role!\n  photo: String\n  about: String\n  wishlist: [Book]\n}\n\ntype CreateBookResponse {\n  message: String!\n  book: Book\n}\n\ntype Mutation {\n  CreateBook(title: String!, description: String, author: String, publisher: String, photos: [String], pages: Int, language: String, isbn10: String, isbn13: String, publishDate: Date, sellers: [SellerInput]): CreateBookResponse! @authenticated\n  DeleteBook(bookId: String): DeleteBookResponse!\n  UpdateBook(bookId: String!, update: UpdateBookInputs!, options: UpdateBookOptions): Book @authenticated\n  CommentReview(comment: String!, reviewId: String!): Comment @authenticated\n  DeleteComment(commentId: String!): DeleteCommentResponse! @authenticated\n  DislikeComment(commentId: String!): DislikeCommentResponse! @authenticated\n  LikeComment(commentId: String!): LikeCommentResponse! @authenticated\n  UpdateComment(commentId: String!, updates: UpdateCommentUpdate!): Comment @authenticated\n  DeleteReview(reviewId: String!): DeleteReviewResponse! @authenticated\n  ReviewBook(bookId: String!, title: String!, description: String!, rating: Int!): ReviewBookResponse! @authenticated\n  UpdateReview(reviewId: String!, update: UpdateReviewInputs!): UpdateReviewResponse!\n  UpvoteReview(reviewId: String!): UpvoteReviewResponse! @authenticated\n  Login(email: String!, password: String!): LoginResponse!\n  Signup(email: String!, password: String!, name: String!): SignupResponse!\n  UpdateProfile(name: String, photo: String, about: String, password: String): User! @authenticated\n}\n\ntype DeleteBookResponse {\n  message: String!\n}\n\ntype Query {\n  GetBook(bookId: String!): Book\n  GetProfile: User @authenticated\n  GetUser(userId: String!): GetUserResponse\n}\n\ninput UpdateBookInputs {\n  title: String\n  description: String\n  author: String\n  publisher: String\n  photos: [String]\n  pages: Int\n  language: String\n  isbn10: String\n  isbn13: String\n  publishDate: Date\n  sellers: [SellerInput]\n}\n\ninput UpdateBookOptions {\n  appendSellers: Boolean\n}\n\ntype DeleteCommentResponse {\n  message: String!\n  success: Boolean!\n}\n\ntype DislikeCommentResponse {\n  message: String!\n  comment: Comment\n}\n\ntype LikeCommentResponse {\n  message: String!\n  comment: Comment\n}\n\ninput UpdateCommentUpdate {\n  comment: String!\n}\n\ntype DeleteReviewResponse {\n  message: String\n  success: Boolean\n}\n\ntype ReviewBookResponse {\n  message: String!\n  review: Review\n}\n\ntype UpdateReviewResponse {\n  message: String!\n  review: Review\n}\n\ninput UpdateReviewInputs {\n  title: String\n  description: String\n  rating: Int\n}\n\ntype UpvoteReviewResponse {\n  message: String!\n  isUpvoted: Boolean!\n}\n\ntype GetUserResponse {\n  id: String\n  name: String\n  role: Role\n  about: String\n  photo: String\n}\n\ntype LoginResponse {\n  message: String\n  token: String\n}\n\ntype SignupResponse {\n  message: String!\n  token: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
@@ -64,8 +64,15 @@ export interface Mutation {
   CreateBook: CreateBookResponse;
   DeleteBook: DeleteBookResponse;
   UpdateBook: Book | null;
+  CommentReview: Comment | null;
+  DeleteComment: DeleteCommentResponse;
+  DislikeComment: DislikeCommentResponse;
+  LikeComment: LikeCommentResponse;
+  UpdateComment: Comment | null;
+  DeleteReview: DeleteReviewResponse;
   ReviewBook: ReviewBookResponse;
   UpdateReview: UpdateReviewResponse;
+  UpvoteReview: UpvoteReviewResponse;
   Login: LoginResponse;
   Signup: SignupResponse;
   UpdateProfile: User;
@@ -95,6 +102,32 @@ export interface UpdateBookMutationArgs {
   options: UpdateBookOptions | null;
 }
 
+export interface CommentReviewMutationArgs {
+  comment: string;
+  reviewId: string;
+}
+
+export interface DeleteCommentMutationArgs {
+  commentId: string;
+}
+
+export interface DislikeCommentMutationArgs {
+  commentId: string;
+}
+
+export interface LikeCommentMutationArgs {
+  commentId: string;
+}
+
+export interface UpdateCommentMutationArgs {
+  commentId: string;
+  updates: UpdateCommentUpdate;
+}
+
+export interface DeleteReviewMutationArgs {
+  reviewId: string;
+}
+
 export interface ReviewBookMutationArgs {
   bookId: string;
   title: string;
@@ -105,6 +138,10 @@ export interface ReviewBookMutationArgs {
 export interface UpdateReviewMutationArgs {
   reviewId: string;
   update: UpdateReviewInputs;
+}
+
+export interface UpvoteReviewMutationArgs {
+  reviewId: string;
 }
 
 export interface LoginMutationArgs {
@@ -158,6 +195,40 @@ export interface UpdateBookOptions {
   appendSellers: boolean | null;
 }
 
+export interface Comment {
+  id: string;
+  comment: string;
+  bookId: string;
+  reviewId: string;
+  user: User;
+  likes: Array<User> | null;
+  dislikes: Array<User> | null;
+}
+
+export interface DeleteCommentResponse {
+  message: string;
+  success: boolean;
+}
+
+export interface DislikeCommentResponse {
+  message: string;
+  comment: Comment | null;
+}
+
+export interface LikeCommentResponse {
+  message: string;
+  comment: Comment | null;
+}
+
+export interface UpdateCommentUpdate {
+  comment: string;
+}
+
+export interface DeleteReviewResponse {
+  message: string | null;
+  success: boolean | null;
+}
+
 export interface ReviewBookResponse {
   message: string;
   review: Review | null;
@@ -172,16 +243,6 @@ export interface Review {
   rating: number;
   upvotes: Array<User> | null;
   approved: boolean;
-  comments: Array<Comment> | null;
-}
-
-export interface Comment {
-  id: string;
-  comment: string;
-  book: Book;
-  user: User;
-  likes: Array<User> | null;
-  dislikes: Array<User> | null;
 }
 
 export interface UpdateReviewInputs {
@@ -193,6 +254,11 @@ export interface UpdateReviewInputs {
 export interface UpdateReviewResponse {
   message: string;
   review: Review | null;
+}
+
+export interface UpvoteReviewResponse {
+  message: string;
+  isUpvoted: boolean;
 }
 
 export interface LoginResponse {

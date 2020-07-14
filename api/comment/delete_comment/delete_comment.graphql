@@ -1,0 +1,8 @@
+type DeleteCommentResponse {
+  message: String!
+  success: Boolean!
+}
+
+type Mutation {
+  DeleteComment(commentId: String!): DeleteCommentResponse! @authenticated
+}

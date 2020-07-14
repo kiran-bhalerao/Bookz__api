@@ -1,7 +1,8 @@
 type Comment {
   id: String!
   comment: String!
-  book: Book!
+  bookId: String!
+  reviewId: String!
   user: User!
   likes: [User]
   dislikes: [User]

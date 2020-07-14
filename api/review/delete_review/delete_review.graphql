@@ -1,0 +1,8 @@
+type DeleteReviewResponse {
+  message: String
+  success: Boolean
+}
+
+type Mutation {
+  DeleteReview(reviewId: String!): DeleteReviewResponse! @authenticated
+}

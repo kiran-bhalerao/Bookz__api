@@ -1,0 +1,3 @@
+type Mutation {
+  CommentReview(comment: String!, reviewId: String!): Comment @authenticated
+}
