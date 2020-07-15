@@ -1,0 +1,8 @@
+type WishlistBookResponse {
+  message: String!
+  success: Boolean!
+}
+
+type Mutation {
+  WishlistBook(bookId: String!): WishlistBookResponse! @authenticated
+}

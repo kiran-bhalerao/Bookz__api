@@ -9,8 +9,8 @@
 - [x] GetProfile :lock:
 - [x] GetUser
 - [x] UpdateProfile :lock:
-- [ ] AddToWishlist :lock:
-- [ ] RemoveFromWishlist :lock:
+- [x] WishlistBook :lock:
+- [x] UnWishlistBook :lock:
 - [x] CreateBook :lock:
 - [x] UpdateBook :lock:
 - [x] DeleteBook :lock:

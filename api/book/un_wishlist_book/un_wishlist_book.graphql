@@ -1,0 +1,8 @@
+type UnWishlistBookResponse {
+  message: String!
+  success: Boolean!
+}
+
+type Mutation {
+  UnWishlistBook(bookId: String!): UnWishlistBookResponse!
+}

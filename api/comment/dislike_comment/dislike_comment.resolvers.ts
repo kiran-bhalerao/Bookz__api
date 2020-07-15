@@ -16,9 +16,10 @@ const resolvers: Resolvers = {
         commentId,
         { $addToSet: { dislikes: user } },
         { new: true }
-      )
+      ).populate('user')
 
       if (comment) {
+        // remove this from likes list if exists TODO:
         return {
           message: 'You just dislike this comment.',
           comment
