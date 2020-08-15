@@ -4,6 +4,7 @@ type GetUserResponse {
   role: Role
   about: String
   photo: String
+  streak: Streak
 }
 
 type Query {

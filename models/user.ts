@@ -1,4 +1,5 @@
 import { BookDoc } from 'models/book'
+import { ScoreDoc } from 'models/score'
 import { Document, Model, model, Schema } from 'mongoose'
 import { Role } from 'types/graph'
 import { Password } from 'utils/Password'
@@ -10,12 +11,18 @@ interface UserAttrs {
   photo: string | null
   about: string | null
   wishlist: BookDoc[] | null
+  scores?: ScoreDoc[]
   role?: Role
 }
 
 export interface UserDoc extends Document, UserAttrs {
   id: string
   role: Role
+  scores: ScoreDoc[]
+  streak: {
+    start: string
+    active: string
+  }
 }
 
 interface UserModel extends Model<UserDoc> {
@@ -36,14 +43,36 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
+    phone: {
+      type: String // must be verified
+    },
     role: {
       type: String,
       required: true,
       enum: ['ADMIN', 'MEMBER', 'CONTRIBUTOR'],
       default: 'MEMBER'
     },
+    streak: {
+      start: {
+        type: Date,
+        default: Date.now
+      },
+      active: {
+        type: Date,
+        default: Date.now
+      }
+    },
     photo: String,
     about: String,
+    scores: {
+      type: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Score'
+        }
+      ],
+      default: []
+    },
     wishlist: {
       type: [
         {

@@ -58,6 +58,11 @@ enum Role {
   CONTRIBUTOR
 }
 
+type Streak {
+  start: String
+  active: String
+}
+
 type User {
   id: String!
   email: String!
@@ -65,6 +70,7 @@ type User {
   role: Role!
   photo: String
   about: String
+  streak: Streak
   wishlist: [Book]
 }
 
@@ -91,6 +97,7 @@ type Mutation {
   Login(email: String!, password: String!): LoginResponse!
   Signup(email: String!, password: String!, name: String!): SignupResponse!
   UpdateProfile(name: String, photo: String, about: String, password: String): User! @authenticated
+  UpdateStreak: UpdateStreakResponse! @authenticated
 }
 
 type DeleteBookResponse {
@@ -182,6 +189,7 @@ type GetUserResponse {
   role: Role
   about: String
   photo: String
+  streak: Streak
 }
 
 type LoginResponse {
@@ -192,4 +200,9 @@ type LoginResponse {
 type SignupResponse {
   message: String!
   token: String
+}
+
+type UpdateStreakResponse {
+  success: Boolean
+  message: String
 }

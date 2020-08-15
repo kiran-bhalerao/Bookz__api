@@ -6,26 +6,27 @@
 
 - [x] Login
 - [x] Signup
-- [x] GetProfile :lock:
+- [x] GetProfile 🔒
 - [x] GetUser
-- [x] UpdateProfile :lock:
-- [x] WishlistBook :lock:
-- [x] UnWishlistBook :lock:
-- [x] CreateBook :lock:
-- [x] UpdateBook :lock:
-- [x] DeleteBook :lock:
+- [x] UpdateProfile 🔒
+- [x] UpdateStreak 🔒
+- [x] WishlistBook 🔒
+- [x] UnWishlistBook 🔒
+- [x] CreateBook 💪
+- [x] UpdateBook 💪
+- [x] DeleteBook 💪
 - [ ] ApproveBook 🛡
 - [x] GetBook
 - [ ] SearchBook
-- [x] ReviewBook :lock:
-- [x] UpdateReview :lock:
-- [x] DeleteReview :lock:
+- [x] ReviewBook 🔒
+- [x] UpdateReview 🔒
+- [x] DeleteReview 🔒
 - [ ] ApproveReview 🛡
-- [x] UpvoteReview :lock:
-- [x] CommentReview :lock:
-- [x] UpdateComment :lock:
-- [x] DeleteComment :lock:
-- [x] LikeComment :lock:
-- [x] DislikeComment :lock:
+- [x] UpvoteReview 🔒
+- [x] CommentReview 🔒
+- [x] UpdateComment 🔒
+- [x] DeleteComment 🔒
+- [x] LikeComment 🔒
+- [x] DislikeComment 🔒
 
 .... on going

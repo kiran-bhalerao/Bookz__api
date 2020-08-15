@@ -1,0 +1,8 @@
+type UpdateStreakResponse {
+  success: Boolean
+  message: String
+}
+
+type Mutation {
+  UpdateStreak: UpdateStreakResponse! @authenticated
+}
