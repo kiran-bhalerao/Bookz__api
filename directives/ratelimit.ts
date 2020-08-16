@@ -20,7 +20,7 @@ export class RateLimitDirective extends SchemaDirectiveVisitor {
 
       if (currentRequestNumber > limit) {
         throw new ApolloError(
-          `Woah there, you are doing way too much.. This is your ${ordinal(
+          `Woah There, You are doing way too much.. This is your ${ordinal(
             currentRequestNumber
           )} request`
         )
