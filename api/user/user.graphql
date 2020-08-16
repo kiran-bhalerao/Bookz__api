@@ -1,4 +1,10 @@
 directive @authenticated on FIELD_DEFINITION
+directive @date(format: String) on FIELD_DEFINITION
+directive @rateLimit(
+  frame: Int
+  limit: Int
+  inputs: [String]
+) on FIELD_DEFINITION
 
 enum Role {
   ADMIN
@@ -7,8 +13,8 @@ enum Role {
 }
 
 type Streak {
-  start: String
-  active: String
+  start: Date @date(format: "DD MMMM YYYY, hh:mm:ss A")
+  active: Date @date(format: "DD MMMM YYYY, hh:mm:ss A")
 }
 
 type User {

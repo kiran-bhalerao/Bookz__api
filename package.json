@@ -14,17 +14,21 @@
   "dependencies": {
     "apollo-server-express": "^2.15.1",
     "clean-deep": "^3.3.0",
+    "dayjs": "^1.8.33",
     "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "graphql": "^15.3.0",
     "graphql-tools": "^6.0.12",
+    "ioredis": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.19",
     "mongoose": "^5.9.22",
+    "ordinal": "^1.0.3",
     "typescript": "^3.9.6",
     "yup": "^0.29.1"
   },
   "devDependencies": {
+    "@types/ioredis": "^4.17.3",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/lodash": "^4.14.157",
     "@types/mongoose": "^5.7.30",

@@ -1,9 +1,13 @@
+import { Request } from 'express'
+import Redis from 'ioredis'
 import { UserDoc } from 'models/user'
 
 declare global {
   /** Apollo context object */
-  type Context = {
+  interface Context {
     user: UserDoc
+    redis: Redis.Redis
+    req: Request
   }
 
   /** Apollo root object */

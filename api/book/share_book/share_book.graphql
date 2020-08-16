@@ -1,0 +1,10 @@
+type ShareBookResponse {
+  success: Boolean!
+  message: String!
+}
+
+type Mutation {
+  ShareBook(bookId: String!): ShareBookResponse!
+    @authenticated
+    @rateLimit(limit: 1, inputs: ["bookId"])
+}

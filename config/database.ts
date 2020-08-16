@@ -11,4 +11,5 @@ export const connectDatabase = async (): Promise<void> => {
     useCreateIndex: true,
     useFindAndModify: false
   })
+  console.log('Connected to DB ✔️')
 }

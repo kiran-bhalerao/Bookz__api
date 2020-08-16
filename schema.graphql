@@ -82,6 +82,7 @@ type CreateBookResponse {
 type Mutation {
   CreateBook(title: String!, description: String, author: String, publisher: String, photos: [String], pages: Int, language: String, isbn10: String, isbn13: String, publishDate: Date, sellers: [SellerInput]): CreateBookResponse! @authenticated
   DeleteBook(bookId: String): DeleteBookResponse!
+  ShareBook(bookId: String!): ShareBookResponse! @authenticated
   UnWishlistBook(bookId: String!): UnWishlistBookResponse!
   UpdateBook(bookId: String!, update: UpdateBookInputs!, options: UpdateBookOptions): Book @authenticated
   WishlistBook(bookId: String!): WishlistBookResponse! @authenticated
@@ -108,6 +109,11 @@ type Query {
   GetBook(bookId: String!): Book
   GetProfile: User @authenticated
   GetUser(userId: String!): GetUserResponse
+}
+
+type ShareBookResponse {
+  success: Boolean!
+  message: String!
 }
 
 type UnWishlistBookResponse {
